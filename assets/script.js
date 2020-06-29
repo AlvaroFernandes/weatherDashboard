@@ -99,7 +99,6 @@ function searchAPI() {
             method: "GET"
 
         }).then(function(response) {
-            console.log(response);
 
             $(".show-name").empty();
             $(".show-temp").empty();
@@ -109,14 +108,11 @@ function searchAPI() {
 
 
             currentDay = moment(response.current.dt * 1000).format('L');
-            // console.log(currentDay);
             currentIcon = response.current.weather[0].icon;
             currentTemp = response.current.temp;
             currentHum = response.current.humidity;
             currentWind = response.current.wind_speed;
             currentUV = response.current.uvi;
-
-            // console.log(currentDay);
 
             let currentIconURL = "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png";
 
@@ -125,9 +121,27 @@ function searchAPI() {
             $(".show-temp").append("temperature: " + currentTemp + "&#8451;");
             $(".show-hum").text("Humidity: " + currentHum + "%");
             $(".show-wind").text("Wind Speed: " + currentWind + "km/h");
-            $(".show-uv").append("UV index: <span>" + currentUV + "<span>")
+            $(".show-uv").append("UV index: <span id='indexUV'>" + currentUV + "<span>")
 
-            $("").addClass
+            // currentUV = Math.round(currentUV);
+
+            console.log(currentUV);
+
+            if (currentUV <= 2) {
+                $("#indexUV").toggleClass("green");
+            }
+            if (currentUV > 2 && currentUV < 5) {
+                $("#indexUV").addClass("yellow");
+            }
+            if (currentUV > 5 && currentUV < 7) {
+                $("#indexUV").addClass("orange");
+            }
+            if (currentUV > 7 && currentUV < 10) {
+                $("#indexUV").addClass("red");
+            }
+            if (currentUV >= 10) {
+                $("#indexUV").addClass("purple");
+            }
 
             if (!$("#current-info").hasClass("current-info")) {
                 $("#current-info").addClass("current-info");
@@ -139,13 +153,9 @@ function searchAPI() {
 
             let dailyForcast = dailyForcastAll.slice(1, cont);
 
-            console.log(dailyForcast);
             $(".forcast").empty();
 
             Object.keys(dailyForcast).forEach(function(key) {
-
-                // console.log(key, dailyForcast[key]);
-
 
                 let date = dailyForcast[key].dt;
                 date = moment(date * 1000).format('L');
@@ -175,15 +185,8 @@ function searchAPI() {
 
         })
 
-
-
         history.indexOf(nameCity) === -1 ? history.push(nameCity) : console.log("item already on array");
         localStorage.setItem("history", JSON.stringify(history));
-
-
-
-
-
 
     })
 }
