@@ -99,7 +99,7 @@ function searchAPI() {
             method: "GET"
 
         }).then(function(response) {
-            // console.log(response);
+            console.log(response);
 
             $(".show-name").empty();
             $(".show-temp").empty();
@@ -110,6 +110,7 @@ function searchAPI() {
 
             currentDay = moment(response.current.dt * 1000).format('L');
             // console.log(currentDay);
+            currentIcon = response.current.weather[0].icon;
             currentTemp = response.current.temp;
             currentHum = response.current.humidity;
             currentWind = response.current.wind_speed;
@@ -117,11 +118,20 @@ function searchAPI() {
 
             // console.log(currentDay);
 
+            let currentIconURL = "http://openweathermap.org/img/wn/" + currentIcon + "@2x.png";
+
             $(".show-name").text(nameCity + " (" + currentDay + ")")
+            $(".show-icon").attr("src", currentIconURL);
             $(".show-temp").append("temperature: " + currentTemp + "&#8451;");
             $(".show-hum").text("Humidity: " + currentHum + "%");
             $(".show-wind").text("Wind Speed: " + currentWind + "km/h");
             $(".show-uv").append("UV index: <span>" + currentUV + "<span>")
+
+            $("").addClass
+
+            if (!$("#current-info").hasClass("current-info")) {
+                $("#current-info").addClass("current-info");
+            }
 
             let dailyForcastAll = response.daily
 
@@ -143,16 +153,22 @@ function searchAPI() {
                 let temp = dailyForcast[key].temp.day;
                 let humidity = dailyForcast[key].humidity;
 
-                const forcastCard = $("<div class='col'>");
+                const forcastCard = $("<div class='col day-forcast'>");
                 const forcastDate = $("<h5>");
+                const forcastIcon = $("<img>");
                 const forcastTemp = $("<p>");
                 const forcastHumidity = $("<p>");
 
+                let icon = dailyForcast[key].weather[0].icon;
+
+                let iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
+
                 forcastDate.text(date);
+                forcastIcon.attr("src", iconURL);
                 forcastTemp.append("temp: " + temp + "&#8451;");
                 forcastHumidity.text("Humidity: " + humidity + "%");
 
-                forcastCard.append(forcastDate, forcastTemp, forcastHumidity);
+                forcastCard.append(forcastDate, forcastIcon, forcastTemp, forcastHumidity);
                 $(".forcast").append(forcastCard);
 
             })

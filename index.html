@@ -16,11 +16,11 @@
 <body>
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col search-list">
+            <div class="col-3 search-list">
                 <form id="search-city">
                     <h4>Search for a city:</h4>
                     <div class="form-row align-items-center">
-                        <div class="col-sm-3 my-1">
+                        <div class="col">
                             <label class="sr-only" for="inputLocation">City</label>
                             <input type="text" class="form-control" id="inputLocation" placeholder="Sydney" required>
                         </div>
@@ -36,10 +36,12 @@
 
                 </div>
             </div>
-            <div class="col col-lg-2 show-result">
+            <div class="col-1"></div>
+            <div class="col-8 show-result">
                 <div class="row">
-                    <div class="col">
+                    <div id="current-info" class="col">
                         <h5 class="show-name"></h5>
+                        <img class="show-icon">
                         <p class="show-temp"></p>
                         <p class="show-hum"></p>
                         <p class="show-wind"></p>

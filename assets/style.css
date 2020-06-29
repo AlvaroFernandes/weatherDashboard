@@ -1,0 +1,13 @@
+.search-list {
+    background-color: silver;
+}
+
+.current-info {
+    border: 1px solid black;
+}
+
+.day-forcast {
+    background-color: blue;
+    margin: 5px 5px;
+    font-size: 12px;
+}
