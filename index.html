@@ -14,6 +14,45 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col search-list">
+                <form id="search-city">
+                    <h4>Search for a city:</h4>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3 my-1">
+                            <label class="sr-only" for="inputLocation">City</label>
+                            <input type="text" class="form-control" id="inputLocation" placeholder="Sydney" required>
+                        </div>
+                        <div class="col-auto my-1">
+                            <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="search-history">
+
+
+                </div>
+            </div>
+            <div class="col col-lg-2 show-result">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="show-name"></h5>
+                        <p class="show-temp"></p>
+                        <p class="show-hum"></p>
+                        <p class="show-wind"></p>
+                        <p class="show-uv"></p>
+                    </div>
+                </div>
+                <div class="row forcast">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
